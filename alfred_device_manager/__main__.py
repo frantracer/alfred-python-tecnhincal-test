@@ -3,6 +3,10 @@ from alfred_device_manager.infrastructure.database import InMemoryDeviceDatabase
 
 
 def main() -> None:
+    """
+    
+    :return:
+    """
     device_db = InMemoryDeviceDatabase()
     app = create_app(device_db)
     app.run(debug=True)

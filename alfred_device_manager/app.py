@@ -18,8 +18,8 @@ def create_app(device_db: InMemoryDeviceDatabase) -> Flask:
                 "device_type": str(device.device_type.value),
                 "status": str(device.status.value)
             }
-        else:
-            return "", 405
+
+        return "", 405
 
     @app.route("/devices", methods=["POST"])
     def devices():
@@ -31,7 +31,7 @@ def create_app(device_db: InMemoryDeviceDatabase) -> Flask:
             )
             device_db.add(device)
             return "", 201
-        else:
-            return "", 405
+
+        return "", 405
 
     return app

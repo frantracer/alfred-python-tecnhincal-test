@@ -7,3 +7,7 @@ run:
 
 test:
 	./venv/bin/pytest tests/
+
+lint:
+	./venv/bin/pylint --rcfile .pylintrc alfred_device_manager tests
+	./venv/bin/mypy alfred_device_manager tests
