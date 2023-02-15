@@ -3,10 +3,10 @@ import uuid
 from flask import Flask, request
 
 from alfred_device_manager.domain.device import Device, DeviceType, DeviceStatus
-from alfred_device_manager.infrastructure.in_memory_device_repository import InMemoryDeviceRepository
+from alfred_device_manager.domain.device_repository import DeviceRepository
 
 
-def create_app(device_db: InMemoryDeviceRepository) -> Flask:
+def create_app(device_db: DeviceRepository) -> Flask:
     app = Flask(__name__)
 
     @app.route("/devices/<device_id>", methods=["GET"])
