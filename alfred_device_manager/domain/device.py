@@ -1,6 +1,7 @@
 import enum
 import uuid
 from dataclasses import dataclass
+from typing import Dict
 
 
 class DeviceType(enum.Enum):
@@ -20,6 +21,14 @@ class DeviceStatus(enum.Enum):
     OFF = "OFF"
 
 
+class DeviceCommand(enum.Enum):
+    """
+    Possible commands for devices
+    """
+    TURN_ON = "TURN_ON"
+    TURN_OFF = "TURN_OFF"
+
+
 @dataclass
 class Device:
     """
@@ -28,3 +37,12 @@ class Device:
     id: uuid.UUID
     device_type: DeviceType
     status: DeviceStatus
+    additional_info: Dict[str, str]
+
+    def execute_command(self, command: DeviceCommand):
+        """
+        Execute a command
+        :param command: Command to execute
+        :return: None
+        """
+        raise NotImplementedError()
