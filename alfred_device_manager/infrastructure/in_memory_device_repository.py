@@ -1,5 +1,5 @@
 import uuid
-from typing import Optional
+from typing import Optional, Dict
 from alfred_device_manager.domain.device import DeviceStatus, Device
 from alfred_device_manager.domain.device_repository import DeviceRepository
 
@@ -29,6 +29,14 @@ class InMemoryDeviceRepository(DeviceRepository):
         :return: None
         """
         self._devices[device.id] = device
+
+    def delete(self, device_id: uuid.UUID):
+        """
+        Delete a device from the database
+        :param device_id: Device id
+        :return: None
+        """
+        self._devices.pop(device_id, None)
 
     def set_status(self, device_id: uuid.UUID, status: DeviceStatus):
         """

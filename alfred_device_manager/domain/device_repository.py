@@ -18,5 +18,9 @@ class DeviceRepository(ABC):
         raise NotImplementedError()
 
     @abstractmethod
+    def delete(self, device_id: uuid.UUID):
+        raise NotImplementedError()
+
+    @abstractmethod
     def set_status(self, device_id: uuid.UUID, status: DeviceStatus):
         raise NotImplementedError()

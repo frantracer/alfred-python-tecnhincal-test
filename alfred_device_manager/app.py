@@ -39,6 +39,18 @@ def create_app(device_db: DeviceRepository) -> Flask:
 
         return "", 405
 
+    @app.route("/devices/<device_id>", methods=["DELETE"])
+    def delete_device(device_id: str):
+        if request.method == "DELETE":
+            device = device_db.get(uuid.UUID(device_id))
+            if device is None:
+                return "", 404
+
+            device_db.delete(device.id)
+            return "", 200
+
+        return "", 405
+
     @app.route("/devices/<device_id>/command/<command>", methods=["POST"])
     def send_command(device_id: str, command: str):
         print(f"Sending command {command} to device {device_id}")
