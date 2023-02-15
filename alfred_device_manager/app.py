@@ -16,7 +16,8 @@ def create_app(device_db: DeviceRepository) -> Flask:
             return {
                 "id": str(device.id),
                 "device_type": str(device.device_type.value),
-                "status": str(device.status.value)
+                "status": str(device.status.value),
+                "additional_info": device.additional_info
             }
 
         return "", 405
@@ -27,7 +28,8 @@ def create_app(device_db: DeviceRepository) -> Flask:
             device = Device(
                 id=uuid.UUID(request.json["id"]),
                 device_type=DeviceType(request.json["device_type"]),
-                status=DeviceStatus(request.json["status"])
+                status=DeviceStatus(request.json["status"]),
+                additional_info=request.json["additional_info"]
             )
             device_db.add(device)
             return "", 201
