@@ -1,9 +1,10 @@
 import uuid
 from typing import Optional
 from alfred_device_manager.domain.device import DeviceStatus, Device
+from alfred_device_manager.domain.device_repository import DeviceRepository
 
 
-class InMemoryDeviceDatabase:
+class InMemoryDeviceRepository(DeviceRepository):
     """
     In-memory database for devices
     """
