@@ -12,7 +12,7 @@ class InMemoryDeviceRepository(DeviceRepository):
         """
         Initialize the database
         """
-        self._devices = {}
+        self._devices: Dict[uuid.UUID, Device] = {}
 
     def get(self, device_id: uuid.UUID) -> Optional[Device]:
         """
