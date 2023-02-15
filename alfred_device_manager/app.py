@@ -2,8 +2,9 @@ import uuid
 
 from flask import Flask, request
 
-from alfred_device_manager.domain.device import Device, DeviceType, DeviceStatus
+from alfred_device_manager.domain.device import Device, DeviceType, DeviceStatus, DeviceCommand
 from alfred_device_manager.domain.device_repository import DeviceRepository
+from alfred_device_manager.infrastructure.devices_integrations.modbus_light import ModbusLight
 
 
 def create_app(device_db: DeviceRepository) -> Flask:
@@ -54,6 +55,21 @@ def create_app(device_db: DeviceRepository) -> Flask:
     @app.route("/devices/<device_id>/command/<command>", methods=["POST"])
     def send_command(device_id: str, command: str):
         print(f"Sending command {command} to device {device_id}")
+        if request.method == "POST":
+            device = device_db.get(uuid.UUID(device_id))
+            device_command = DeviceCommand(command)
+
+            if device is None:
+                return "", 404
+
+            if device.device_type == DeviceType.LIGHT_MODBUS:
+                modbus = ModbusLight(
+                    id=device.id,
+                    device_type=device.device_type,
+                    status=device.status,
+                    additional_info=device.additional_info)
+                modbus.execute_command(device_command)
+
         return "", 200
 
     return app
