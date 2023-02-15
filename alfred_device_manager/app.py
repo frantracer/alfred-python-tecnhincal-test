@@ -36,4 +36,9 @@ def create_app(device_db: DeviceRepository) -> Flask:
 
         return "", 405
 
+    @app.route("/devices/<device_id>/command/<command>", methods=["POST"])
+    def send_command(device_id: str, command: str):
+        print(f"Sending command {command} to device {device_id}")
+        return "", 200
+
     return app
