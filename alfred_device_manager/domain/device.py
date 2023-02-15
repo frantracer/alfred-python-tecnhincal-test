@@ -8,9 +8,8 @@ class DeviceType(enum.Enum):
     """
     Type of devices
     """
-    LIGHT = "LIGHT"
-    SENSOR = "SENSOR"
-    SWITCH = "SWITCH"
+    LIGHT_MODBUS = "LIGHT_MODBUS"
+    SWITCH_ZWAVE = "SWITCH_ZWAVE"
 
 
 class DeviceStatus(enum.Enum):
