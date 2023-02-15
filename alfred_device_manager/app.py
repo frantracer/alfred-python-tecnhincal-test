@@ -13,6 +13,9 @@ def create_app(device_db: DeviceRepository) -> Flask:
     def one_device(device_id: str):
         if request.method == "GET":
             device = device_db.get(uuid.UUID(device_id))
+            if device is None:
+                return "", 404
+
             return {
                 "id": str(device.id),
                 "device_type": str(device.device_type.value),

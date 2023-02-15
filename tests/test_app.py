@@ -45,3 +45,13 @@ def test_create_a_device() -> None:
             }
         })
         assert response.status_code == 201
+
+
+def test_device_does_not_exist() -> None:
+    db_mock = MagicMock(spec=DeviceRepository)
+    db_mock.get = MagicMock(return_value=None)
+    app = create_app(db_mock)
+
+    with app.test_client() as client:
+        response = client.get('/devices/12345678-1234-1234-1234-123456789012')
+        assert response.status_code == 404
