@@ -1,8 +1,9 @@
 import uuid
 
 from flask import Flask, request
-from src.database import InMemoryDeviceDatabase
-from src.device import Device, DeviceType, DeviceStatus
+
+from alfred_device_manager.domain.device import Device, DeviceType, DeviceStatus
+from alfred_device_manager.infrastructure.database import InMemoryDeviceDatabase
 
 
 def create_app(device_db: InMemoryDeviceDatabase) -> Flask:

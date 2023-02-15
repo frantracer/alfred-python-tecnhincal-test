@@ -1,6 +1,6 @@
 import uuid
 from typing import Optional
-from src.device import Device, DeviceStatus
+from alfred_device_manager.domain.device import DeviceStatus, Device
 
 
 class InMemoryDeviceDatabase:

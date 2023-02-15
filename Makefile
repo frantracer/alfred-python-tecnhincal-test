@@ -3,7 +3,7 @@ setup:
 	./venv/bin/pip3 install -r requirements.txt
 
 run:
-	./venv/bin/python3 -m src
+	./venv/bin/python3 -m alfred_device_manager
 
 test:
 	./venv/bin/pytest tests/

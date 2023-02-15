@@ -1,5 +1,5 @@
-from src.app import create_app
-from src.database import InMemoryDeviceDatabase
+from alfred_device_manager.app import create_app
+from alfred_device_manager.infrastructure.database import InMemoryDeviceDatabase
 
 
 def main() -> None:

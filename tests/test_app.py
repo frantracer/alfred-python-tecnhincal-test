@@ -1,7 +1,8 @@
 import uuid
 from unittest.mock import MagicMock
-from src.app import create_app
-from src.device import DeviceType, Device, DeviceStatus
+
+from alfred_device_manager.app import create_app
+from alfred_device_manager.domain.device import DeviceType, Device, DeviceStatus
 
 
 def test_get_a_device() -> None:
