@@ -12,7 +12,7 @@ class ModbusLight(Device):
 
     def __post_init__(self):
         try:
-            self.address = int(self.additional_info["address"])
+            self.address = int(self.additional_info["address"], 0)
         except KeyError as exception:
             raise ValueError("Missing address in additional_info") from exception
         except ValueError as exception:
